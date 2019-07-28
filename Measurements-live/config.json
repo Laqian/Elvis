@@ -1,0 +1,48 @@
+{
+  "static": "public",
+  "port": 80,
+  "pagePath": "public/page/",
+  "mode": "cos",
+  "mport": 8201,
+  "mhost": "localhost",
+  "db": {
+    "host": "localhost",
+    "user": "aism",
+    "password": "aptx4869",
+    "database": "asim",
+    "port": 3306,
+    "charset": "UTF8_GENERAL_CI",
+    "debug": false,
+    "useConnectionPooling": true
+  },
+  "mail": {
+    "outlook": {
+      "host": "smtp-mail.outlook.com",
+      "port": 587,
+      "secure": false,
+      "auth": {
+        "user": "example@outlook.com",
+        "pass": "password"
+      }
+    },
+    "netcast": {
+      "service": "smtp.163.com",
+      "host": "smtp.163.com",
+      "secureConnection": true,
+      "port": 465,
+      "auth": {
+        "user": "AISM2019@163.com",
+        "pass": "aismhdu123"
+      }
+    }
+  },
+  "cos": {
+    "domin": "https://example.cos.ap-shanghai.myqcloud.com",
+    "SecretId": "AKIDxV1x3ueQAeWP9pAwQjmB0bw2NgjLMpWz",
+    "SecretKey": "NEqMmzB8vKZoiZDhiU1HCiy2xfT2cnqg",
+    "setting": {
+      "Bucket": "sunlln-1258709805",
+      "Region": "ap-shanghai"
+    }
+  }
+}

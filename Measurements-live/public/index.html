@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <title>测试页面</title>
+    <script src="https://measurementslive.ni.com/cdn/measurementslive.js"></script>
+    <style>
+      body {
+        overflow: hidden;
+      }
+
+      #myPlayer {
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+      }
+
+      #container {
+        width: 80%;
+        margin: auto;
+      }
+
+      #toolbar {
+        overflow: visible;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div id="button-settings-example">
+      <style>
+        .container-container {
+          position: relative;
+          width: 100%;
+          height: 48px;
+          padding-top: 10px;
+        }
+        .buttoncontainer {
+          position: absolute;
+        }
+        .buttoncontainer.top {
+          display: flex;
+          flex-direction: row;
+          top: 0;
+          height: 48px;
+          width: 100%;
+        }
+        .buttoncontainer.bottom {
+          display: flex;
+          flex-direction: row;
+          bottom: 0;
+          height: 48px;
+          width: 100%;
+        }
+        .buttoncontainer.left {
+          display: flex;
+          flex-direction: column;
+          margin-top: 48px;
+          left: 0;
+          width: 48px;
+        }
+        .buttoncontainer.right {
+          display: flex;
+          flex-direction: column;
+          margin-top: 48px;
+          right: 0;
+          width: 200px;
+        }
+        .buttoncontainer.small .mybutton {
+          width: 48px;
+        }
+      </style>
+
+      <div class="container-container">
+        <div class="buttoncontainer top large bg-dark">
+          <device-button
+            devicegroup="default"
+            id="device2"
+            class="mybutton"
+            buttongroup="group1"
+          ></device-button>
+          <instruments-button
+            devicegroup="default"
+            id="instrument2"
+            class="mybutton"
+            buttongroup="group1"
+          ></instruments-button>
+          <resources-button
+            devicegroup="default"
+            id="resource2"
+            class="mybutton"
+            buttongroup="group1"
+          ></resources-button>
+          <update-button
+            devicegroup="default"
+            id="update2"
+            class="mybutton"
+            buttongroup="group1"
+          ></update-button>
+        </div>
+      </div>
+    </div>
+    <div class="pos-f-t">
+      <div class="collapse" id="navbarToggleExternalContent">
+        <div class="input-group" style="margin-bottom:0px;">
+          <div class="custom-file">
+            <label
+              class="custom-file-label"
+              id="labelFile"
+              for="inputGroupFile02"
+              >Choose file</label
+            >
+            <input
+              type="file"
+              class="custom-file-input"
+              id="inputGroupFile02"
+            />
+          </div>
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              id="uploadFile"
+            >
+              上传
+            </button>
+          </div>
+        </div>
+      </div>
+      <nav class="navbar navbar-dark bg-dark">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarToggleExternalContent"
+          aria-controls="navbarToggleExternalContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav>
+    </div>
+    <div id="container">
+      <video
+        id="myPlayer"
+        poster=""
+        controls
+        playsInline
+        webkit-playsinline
+        autoplay
+      >
+        <source
+          src="http://hls.open.ys7.com/openlive/cd32d19794d64effb18ef25c6f763acb.hd.m3u8"
+          type="application/x-mpegURL"
+        />
+      </video>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/ezuikit.js"></script>
+
+    <script>
+      let uploader = document.getElementById("inputGroupFile02");
+      uploader.addEventListener("change", () => {
+        document.getElementById("labelFile").innerText = uploader.value;
+      });
+
+      let button = document.getElementById("uploadFile");
+      button.addEventListener("click", () => {
+        let fileObj = uploader.files[0]; // js 获取文件对象
+        if (typeof fileObj == "undefined" || fileObj.size <= 0) {
+          alert("请选择文件");
+          return;
+        }
+
+        let formFile = new FormData();
+        formFile.append("file", fileObj); //加入文件对象
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("post", "./util/file", true);
+        xhr.onload = function() {
+          alert("上传完成!");
+        };
+        xhr.send(formFile);
+      });
+    </script>
+    <script>
+      var player = new EZUIPlayer("myPlayer");
+    </script>
+  </body>
+</html>

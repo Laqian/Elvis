@@ -1,0 +1,3 @@
+LabVIEW Project路径：examples\NI SPI IP\R Series
+主vi为：NI SPI - Host.vi
+实际运行程序前，请先将.rpd文件拷入至ELVIS的/LabVIEW Data文件夹下
