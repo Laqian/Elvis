@@ -53,10 +53,9 @@ function saveAs(name, content) {
     .then(function(serverMessage) {
       console.log("Server message: " + serverMessage);
       return ftp.put(
-        `./source/${name}`,
-        `/home/lvuser/natinst/LabVIEW Data/bitfile.rpd`
+        `./source/${name}`, //本地source文件下的目录
+        `/natinst/LabVIEW Data/bitfile.rpd` //Elvis的labVIEW Data的目录
       );
-      // return ftp.put(`./source/${name}`, `/natinst/LabVIEW Data/${name}`);
     })
     .then(function() {
       addWait(name);
