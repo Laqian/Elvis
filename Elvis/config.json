@@ -4,7 +4,8 @@
   "pagePath": "public/page/",
   "mode": "cos",
   "mport": 8201,
-  "mhost": "localhost",
+  "mhost": "101.132.116.211",
+  "EvlisIP":"192.168.0.x",
   "db": {
     "host": "localhost",
     "user": "aism",

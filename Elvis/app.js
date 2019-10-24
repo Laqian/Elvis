@@ -49,13 +49,14 @@ function saveAs(name, content) {
 
   var ftp = new PromiseFtp();
   ftp
-    .connect({ host: "192.168.0.11" })
+    .connect({ host:config.EvlisIP})
     .then(function(serverMessage) {
       console.log("Server message: " + serverMessage);
       return ftp.put(
-        `./source/${name}`, //本地source文件下的目录
-        `/natinst/LabVIEW Data/bitfile.rpd` //Elvis的labVIEW Data的目录
+        `./source/${name}`,
+        `/home/lvuser/natinst/LabVIEW Data/bitfile.rpd`
       );
+      // return ftp.put(`./source/${name}`, `/natinst/LabVIEW Data/${name}`);
     })
     .then(function() {
       addWait(name);
@@ -87,7 +88,7 @@ function addWait(file) {
 //   socketClient.on("data", exec);
 // }
 
-socketClient.connect(6678, "192.168.0.11", function() {
+socketClient.connect(6678, config.EvlisIP, function() {
   // socketClient.write("start" + fileName);
 });
 
