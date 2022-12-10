@@ -21,7 +21,7 @@
     "connect-multiparty": "^2.2.0",
     "cookie-parser": "^1.4.4",
     "cos-nodejs-sdk-v5": "^2.5.9",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-form-data": "^2.0.8",
     "http-error": "0.0.6",
     "http-errors": "^1.7.3",
